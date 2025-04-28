@@ -4,7 +4,6 @@ import edu.ramesh.org.dto.Product;
 import edu.ramesh.org.service.MainService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,8 +26,18 @@ public class MainController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping
+    @PostMapping("/set")
     public Product addProduct(@RequestBody Product product) {
         return mainService.createProduct(product);
+    }
+
+    @GetMapping("/get/{id}")
+    public ResponseEntity<Product> getProductById(@PathVariable Long id){
+        return new ResponseEntity<>(mainService.getProductById(id),HttpStatus.OK);
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<Boolean> updateById(@RequestBody Product product){
+        return new ResponseEntity<>(mainService.updateById(product),HttpStatus.OK);
     }
 }

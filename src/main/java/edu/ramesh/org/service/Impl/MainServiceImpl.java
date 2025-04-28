@@ -30,4 +30,15 @@ public class MainServiceImpl implements MainService {
                 Product.class
         );
     }
+
+    @Override
+    public Product getProductById(Long id) {
+        return restTemplate.getForObject("https://fakestoreapi.com/products/"+id,Product.class);
+    }
+
+    @Override
+    public Boolean updateById(Product product) {
+          restTemplate.put("https://fakestoreapi.com/products/"+product.getId(),product);
+          return true;
+    }
 }

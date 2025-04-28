@@ -8,4 +8,6 @@ public interface MainService {
 
     List<Product> getProduct();
     Product createProduct(Product product);
+    Product getProductById(Long id);
+    Boolean updateById(Product product);
 }
